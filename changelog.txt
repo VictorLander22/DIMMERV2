@@ -1,0 +1,25 @@
+#########################################################
+2,39 - Leonardo Aquino
+- Async web
+
+#########################################################
+2,38 - Leonardo Aquino
+- Alteração do html e webconfig
+- melhorias nas funçoes
+- alteração da classe KPDevices
+- melhorias na memoria ram
+
+#########################################################
+2,37 - Leonardo Aquino
+- Escrita e leitura da memoria ROM pra armazenamento de dados
+    Toda leitura de inicilização foi migrada do arquivo txt para area de memoria ROM
+- Organização do codigo
+
+#########################################################
+2,36 - Leonardo Aquino
+- Mudanda do chipid para endereço MAC (foi necessario alteração na cloud para idchip virar um string ou inves de int)
+- Inserido MQTT
+
+#########################################################
+2,35 - Fernando Leal
+- Mudança do UDP para broadcast para permitir conexão com IOS
