@@ -98,7 +98,7 @@ String vSenhaAP = "12345678";
 PCF8574 sensor1(0x23, &Wire);
 #ifdef model8
 #include "src\KPPCFClass.h"
-KPPCF chip2;
+//KPPCF chip2;
 KPPCF sensor2;
 #else
 //PCF8574 chip2(0x22, &Wire);
