@@ -44,7 +44,7 @@ void trataDevice(String (&Devices)[20])
 void trataSensores()
 {
   uint16_t inValues = sensor2.read8() << 8 | sensor1.read8();
-  uint16_t outValues = chip2.read8() << 8 | chip1.read8();
+  // uint16_t outValues = chip2.read8() << 8 | chip1.read8();
   String sInValues, sOutValues;
   static unsigned long limparUltimoDisparo = 0;
 
@@ -53,12 +53,12 @@ void trataSensores()
     if (i < 8)
     {
       sInValues += (String)bitRead(inValues, 7 - i);
-      sOutValues += (String)bitRead(outValues, 7 - i);
+      // sOutValues += (String)bitRead(outValues, 7 - i);
     }
     else
     {
       sInValues += (String)bitRead(inValues, 15 - (i - 8));
-      sOutValues += (String)bitRead(outValues, 15 - (i - 8));
+      // sOutValues += (String)bitRead(outValues, 15 - (i - 8));
     }
   }
 

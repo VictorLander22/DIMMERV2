@@ -213,18 +213,18 @@ void leituraUDP(AsyncUDPPacket packet)
               //trataDevice();
             }
 
-            String sChip1 = String(chip1.read8(), BIN);
-            String sChip2 = String(chip2.read8(), BIN);
+            // String sChip1 = String(chip1.read8(), BIN);
+            //String sChip2 = String(chip2.read8(), BIN);
 
-            while (sChip1.length() < 8)
-            {
-              sChip1 = '0' + sChip1;
-            }
+            // while (sChip1.length() < 8)
+            //{
+            //sChip1 = '0' + sChip1;
+            //}
 
-            while (sChip2.length() < 8)
-            {
-              sChip2 = '0' + sChip2;
-            }
+            // while (sChip2.length() < 8)
+            //{
+            //sChip2 = '0' + sChip2;
+            //}
 
             // separa os valores ligos no array
             String valorSensores[16] = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
@@ -244,7 +244,7 @@ void leituraUDP(AsyncUDPPacket packet)
             // rssi = WiFi.RSSI();
             char replyPacekt[255] = "";
             String valSensores = sSensor1 + sSensor2;
-            valSensores = "2934d03" + String(IpDispositivo[0]) + "." + String(IpDispositivo[1]) + "." + String(IpDispositivo[2]) + "." + String(IpDispositivo[3]) + "|" + valSensores + "|" + sChip1 + sChip2 + "|" + getRSSI() + "*";
+            //valSensores = "2934d03" + String(IpDispositivo[0]) + "." + String(IpDispositivo[1]) + "." + String(IpDispositivo[2]) + "." + String(IpDispositivo[3]) + "|" + valSensores + "|" + sChip1 + sChip2 + "|" + getRSSI() + "*";
             valSensores.toCharArray(replyPacekt, 255);
             //retorna udp
 

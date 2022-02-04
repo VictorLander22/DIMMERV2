@@ -93,15 +93,15 @@ IPAddress DNS2(4, 4, 4, 4);
 String vSenhaAP = "12345678";
 
 // Congiguração chips I2C
-PCF8574 chip1(0x21, &Wire);
-PCF8574 chip3(0x25, &Wire);
+//PCF8574 chip1(0x21, &Wire);
+//PCF8574 chip3(0x25, &Wire);
 PCF8574 sensor1(0x23, &Wire);
 #ifdef model8
 #include "src\KPPCFClass.h"
 KPPCF chip2;
 KPPCF sensor2;
 #else
-PCF8574 chip2(0x22, &Wire);
+//PCF8574 chip2(0x22, &Wire);
 PCF8574 sensor2(0x24, &Wire);
 #endif
 

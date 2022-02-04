@@ -43,7 +43,7 @@ void conectar()
         }
 
         delay(400);
-        chip3.write(LedWifiConnected, !chip3.read(LedWifiConnected));
+        // chip3.write(LedWifiConnected, !chip3.read(LedWifiConnected));
         slog(".");
         waitingWifi++;
       }
@@ -194,9 +194,9 @@ void wifiConectSTA()
   WiFi.config(ip, gateway, subnet, DNS1, DNS2);
   WiFi.begin(ssid, password);
 
-  chip3.write(LedWifiConnected, LOW);
-  chip3.write(LedWifiHI, HIGH);
-  chip3.write(LedWifiLOW, HIGH);
+  //  chip3.write(LedWifiConnected, LOW);
+  // chip3.write(LedWifiHI, HIGH);
+  //chip3.write(LedWifiLOW, HIGH);
 }
 
 void wifiConectAP()
@@ -238,9 +238,9 @@ void wifiConectAP()
   IpDispositivo = local_IP;
   setBroadcastIP(DevSet.apWifiMSK);
 
-  chip3.write(LedWifiConnected, HIGH);
-  chip3.write(LedWifiHI, HIGH);
-  chip3.write(LedWifiLOW, HIGH);
+  //chip3.write(LedWifiConnected, HIGH);
+  // chip3.write(LedWifiHI, HIGH);
+  // chip3.write(LedWifiLOW, HIGH);
 }
 
 void SetupPing()
