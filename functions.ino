@@ -97,7 +97,7 @@ void MillisResets()
     millisDebug = 0;
     millisMqttReconnect = 0;
     millisNetworkScan = 0;
-    lastCnTime = 0;
+    //lastCnTime = 0;
     //rfmilis = 0;
     millisWifiLed = 0;
     lastDebounceTime = 0;

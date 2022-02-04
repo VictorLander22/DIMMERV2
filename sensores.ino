@@ -459,7 +459,7 @@ boolean verificaSensores(int nsensor, String vsAtual)
           lastDebounceTime = millisAtual;
           if (vTipo2 == "2") // cenas
           {
-            triggerCena(PortaAparelho2);
+            // triggerCena(PortaAparelho2);
           }
           else if (vTipo2 == "1")
           {
@@ -567,7 +567,7 @@ boolean verificaSensores(int nsensor, String vsAtual)
         lastDebounceTime = millisAtual;
         if (vTipo2 == "2") // cenas
         {
-          triggerCena(PortaAparelho2);
+          // triggerCena(PortaAparelho2);
         }
         else if (vTipo2 == "1")
         {
@@ -866,7 +866,7 @@ boolean verificaSensores(int nsensor, String vsAtual)
         if ((millisAtual - lastDebounceTime) > debounceDelay)
         {
           // cena1
-          triggerCena(PortaAparelho);
+          // triggerCena(PortaAparelho);
         }
       }
       else if (estadoAtual[nsensor] == LOW && ultimoEstado[nsensor] == HIGH)
@@ -874,7 +874,7 @@ boolean verificaSensores(int nsensor, String vsAtual)
         if ((millisAtual - lastDebounceTime) > debounceDelay)
         {
           // cena2
-          triggerCena(PortaAparelho2);
+          //  triggerCena(PortaAparelho2);
         }
       }
       valorRetorno = false;

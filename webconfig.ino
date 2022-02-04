@@ -65,12 +65,12 @@ void AsyncFunctions()
       retornachip();
     // else if (functionName == F("/chamaddns"))
     //   chamaddns();
-    else if (functionName == F("/consultaagenda"))
-      conagenda();
-    else if (functionName == F("/gravaragenda"))
-      gravaragenda();
-    else if (functionName == F("/atualizahora"))
-      atualizahora();
+    // else if (functionName == F("/consultaagenda"))
+    // conagenda();
+    // else if (functionName == F("/gravaragenda"))
+    // gravaragenda();
+    // else if (functionName == F("/atualizahora"))
+    //  atualizahora();
     else if (functionName == F("/lersensores"))
       lersensores();
     else if (functionName == F("/consultasensor"))
@@ -124,8 +124,8 @@ void AsyncFunctions()
       apiconfig();
     else if (functionName == F("/alterasenhapi"))
       alterasenhapi();
-    else if (functionName == F("/gravacena"))
-      gravacena();
+    // else if (functionName == F("/gravacena"))
+    // gravacena();
     // else if (functionName == F("/log"))
     //   readlog();
     else if (functionName == F("/gravacloud"))

@@ -171,9 +171,9 @@ void sendCloud(bool onlyNotify = false)
           porta = retornaPorta(porta);
           if (porta >= 0)
           {
-            cenaPAtual++;
+            //  cenaPAtual++;
 
-            lastCnTime = millisAtual;
+            // lastCnTime = millisAtual;
             delay(300);
           }
         }
@@ -185,7 +185,7 @@ void sendCloud(bool onlyNotify = false)
         //}
         else if (tipoJson == "5")
         {
-          triggerCena(acaoJson);
+          //triggerCena(acaoJson);
         }
         else if (tipoJson == "6") // notificacao
         {

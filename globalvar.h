@@ -66,8 +66,8 @@ unsigned long millisAtual;
 unsigned long millisDebug;
 unsigned long millisMqttReconnect;
 unsigned long millisNetworkScan;
-//unsigned long lastDisplay;
-//unsigned long millisIREnabled;
+// unsigned long lastDisplay;
+// unsigned long millisIREnabled;
 unsigned long millisSendUDP;
 unsigned long millisFreeMemory;
 
@@ -93,15 +93,15 @@ IPAddress DNS2(4, 4, 4, 4);
 String vSenhaAP = "12345678";
 
 // Congiguração chips I2C
-//PCF8574 chip1(0x21, &Wire);
-//PCF8574 chip3(0x25, &Wire);
+// PCF8574 chip1(0x21, &Wire);
+// PCF8574 chip3(0x25, &Wire);
 PCF8574 sensor1(0x23, &Wire);
 #ifdef model8
 #include "src\KPPCFClass.h"
-//KPPCF chip2;
+// KPPCF chip2;
 KPPCF sensor2;
 #else
-//PCF8574 chip2(0x22, &Wire);
+// PCF8574 chip2(0x22, &Wire);
 PCF8574 sensor2(0x24, &Wire);
 #endif
 
@@ -115,8 +115,8 @@ String s2Sensor2 = "";
 int buttonState = 13;
 int counter = 0;
 int counterRTC = 0;
-boolean AgendaAlterada = true;
-String Agendas[6] = {"", "", "", "", "", ""};
+// boolean AgendaAlterada = true;
+// String Agendas[6] = {"", "", "", "", "", ""};
 
 boolean SensorAlterado = true;
 String Sensores[16] = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
@@ -179,52 +179,52 @@ unsigned long interval = 2000;
 String Senha = "kdi9e";
 
 //   IR   //
-//uint16_t RECV_PIN = 14;
-//uint16_t CAPTURE_BUFFER_SIZE = 1024;
-//const uint16_t kMinUnknownSize = 12;
+// uint16_t RECV_PIN = 14;
+// uint16_t CAPTURE_BUFFER_SIZE = 1024;
+// const uint16_t kMinUnknownSize = 12;
 //#define TIMEOUT 15U
 //#if DECODE_AC
-//const uint8_t TIMEOUT = 50;
+// const uint8_t TIMEOUT = 50;
 //#else
-//const uint8_t TIMEOUT = 15;
+// const uint8_t TIMEOUT = 15;
 //#endif
 //#define TIMEOUT 15U
-//IRrecv irrecv(RECV_PIN, CAPTURE_BUFFER_SIZE, TIMEOUT, true);
-//decode_results results;
-//irparams_t save;
-//int tamanho = -1;
-//String codigoIR = "-1";
+// IRrecv irrecv(RECV_PIN, CAPTURE_BUFFER_SIZE, TIMEOUT, true);
+// decode_results results;
+// irparams_t save;
+// int tamanho = -1;
+// String codigoIR = "-1";
 
-//IRsend irsend(16);
-//boolean enReadIR = false;
-//int Modelo = 0;
-//boolean irEnSend = false;
-//uint16_t irNumBits;
-//uint16_t irModel;
-//uint8_t irPort;
-//String irData = "";
+// IRsend irsend(16);
+// boolean enReadIR = false;
+// int Modelo = 0;
+// boolean irEnSend = false;
+// uint16_t irNumBits;
+// uint16_t irModel;
+// uint8_t irPort;
+// String irData = "";
 
 //   IR   //
 
 //   RF  //
-//RCSwitch mySwitch = RCSwitch();
-//RCSwitch sSendRF = RCSwitch();
-//int rxRF = 12;
-//int txRF = 15;
+// RCSwitch mySwitch = RCSwitch();
+// RCSwitch sSendRF = RCSwitch();
+// int rxRF = 12;
+// int txRF = 15;
 // boolean enReadRF = false;
-//int tamanhoRF = -1;
-//int gProtocoloRF = 1;
-//String codigoRF = "-1";
-//boolean SensorRFAlterado = true;
-//String SensoresRF[30] = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
-//boolean sensorRFDisparado = false;
-//int numSensorDisparado = -1;
-//String ultimoDisparoRF = "";
-//boolean estadoAtualRF[30] = {LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW};
-//boolean ultimoEstadoRF[30] = {LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW};
-//boolean msgDisparadaRF[30] = {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
-//int numSensorMSG = 0;
-//unsigned long rfmilis = 0;
+// int tamanhoRF = -1;
+// int gProtocoloRF = 1;
+// String codigoRF = "-1";
+// boolean SensorRFAlterado = true;
+// String SensoresRF[30] = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
+// boolean sensorRFDisparado = false;
+// int numSensorDisparado = -1;
+// String ultimoDisparoRF = "";
+// boolean estadoAtualRF[30] = {LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW};
+// boolean ultimoEstadoRF[30] = {LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW};
+// boolean msgDisparadaRF[30] = {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
+// int numSensorMSG = 0;
+// unsigned long rfmilis = 0;
 //   RF  //
 int Buzzer = 3;
 
@@ -240,11 +240,11 @@ String ApiPass = "12345678";
 int memorialivre = 0;
 
 //   CENAS   //
-bool cenaExecucao = false;
-String ArqCena = "";
-int cenaPAtual = 0;
-int cenaPTotal = 0;
-unsigned long lastCnTime = -1;
+// bool cenaExecucao = false;
+// String ArqCena = "";
+// int cenaPAtual = 0;
+// int cenaPTotal = 0;
+// unsigned long lastCnTime = -1;
 
 //   CLOUD ///
 bool usaCloud = false;
@@ -275,7 +275,7 @@ uint16_t lastOutputs;
 const uint8_t dispY[5] = {1, 14, 30, 42, 54};
 String dispText[5] = {"", "", "", "", ""};
 uint8_t dispLine = 0;
-//bool hasDisplay = false;
+// bool hasDisplay = false;
 bool clock2s;
 
 String idChip = "";
@@ -288,7 +288,7 @@ String *clientestr;
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-//Somfy somfy(txRF, 0x00000000); // initial remote id - change this one,  it will be incremented for remotes added afterwards
+// Somfy somfy(txRF, 0x00000000); // initial remote id - change this one,  it will be incremented for remotes added afterwards
 
-boolean enReadDimmer = false;
-// DIMMER//
+// boolean enReadDimmer = false;
+//  DIMMER//

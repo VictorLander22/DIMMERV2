@@ -214,7 +214,7 @@ void api()
     {
       ret = "1";
       slogln("Numero da cena: " + valueApi);
-      triggerCena(valueApi);
+      // triggerCena(valueApi);
     }
     else if (action == "l") // linha de ação
     {

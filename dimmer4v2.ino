@@ -12,17 +12,17 @@ void setup(void)
   slogln();
 
   scanI2c();
-  //chip1.begin();
+  // chip1.begin();
   //.begin();
-  //chip3.begin();
-  //sensor1.begin();
-  //sensor2.begin();
+  // chip3.begin();
+  // sensor1.begin();
+  // sensor2.begin();
 
   ApagaPortas();
 
-  //IniciaRTC();
+  // IniciaRTC();
 
-  //CheckLittleFS();
+  // CheckLittleFS();
 
   WiFi.mode(WIFI_STA);
   WiFi.disconnect();
@@ -128,7 +128,7 @@ void loop(void)
 
     LoopCloud();
 
-    LoopAgenda();
+    // LoopAgenda();
 
     LoopLedRunning();
 
@@ -139,7 +139,7 @@ void loop(void)
 
     trataSensores();
 
-    //checkCena();
+    // checkCena();
 
     MqttLoop();
 
@@ -149,7 +149,7 @@ void loop(void)
 
     AsyncFunctions();
 
-    //ReadDimmerValue(); // Funcao pra receber valores do dimmer
+    // ReadDimmerValue(); // Funcao pra receber valores do dimmer
 
     if ((millisAtual > millisFreeMemory))
     {
