@@ -12,17 +12,17 @@ void setup(void)
   slogln();
 
   scanI2c();
-  //chip1.begin();
+  // chip1.begin();
   //.begin();
-  //chip3.begin();
-  //sensor1.begin();
-  //sensor2.begin();
+  // chip3.begin();
+  // sensor1.begin();
+  // sensor2.begin();
 
   ApagaPortas();
 
-  //IniciaRTC();
+  // IniciaRTC();
 
-  //CheckLittleFS();
+  // CheckLittleFS();
 
   WiFi.mode(WIFI_STA);
   WiFi.disconnect();
@@ -50,7 +50,7 @@ void setup(void)
     slogln();
     slogln(F("Factory reset\n"));
 
-    DevSet.factoryReset();
+    // DevSet.factoryReset();
   }
   else
   {
@@ -94,7 +94,7 @@ void setup(void)
 
   slogln("Notificar: " + String(notificar));
 
-  LoadInputs();
+  // LoadInputs();
 
   MqttSetup(); // consome 2k da ram 11400
 
@@ -139,7 +139,7 @@ void loop(void)
 
     trataSensores();
 
-    //checkCena();
+    // checkCena();
 
     MqttLoop();
 
@@ -149,7 +149,7 @@ void loop(void)
 
     AsyncFunctions();
 
-    //ReadDimmerValue(); // Funcao pra receber valores do dimmer
+    // ReadDimmerValue(); // Funcao pra receber valores do dimmer
 
     if ((millisAtual > millisFreeMemory))
     {

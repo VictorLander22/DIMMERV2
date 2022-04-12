@@ -9,17 +9,17 @@ void LoopReconexao()
 
 void conectar()
 {
-  //WiFi.disconnect();
-  //WiFi.softAPdisconnect();
+  // WiFi.disconnect();
+  // WiFi.softAPdisconnect();
   DevSet.getDeviceSettings();
 
   vConfigWIFI = bitRead(DevSet.mode, 2);
 
-  //String retorno = wifiPadrao();
-  //vConfigWIFI = retorno;
+  // String retorno = wifiPadrao();
+  // vConfigWIFI = retorno;
   if (scanningWifi >= 0)
   {
-    if (!vConfigWIFI && (vListaWifi.lastIndexOf(DevSet.wifiSSID) >= 0)) //Wifi STA
+    if (!vConfigWIFI && (vListaWifi.lastIndexOf(DevSet.wifiSSID) >= 0)) // Wifi STA
     {
 
       wifiConectSTA();
@@ -37,23 +37,23 @@ void conectar()
         if (digitalRead(buttonState) == HIGH)
         {
           slog("resetando");
-          WiFi.disconnect();
-          DevSet.factoryReset();
-          ESP.restart();
+          // WiFi.disconnect();
+          // DevSet.factoryReset();
+          // ESP.restart();
         }
 
         delay(400);
-        chip3.write(LedWifiConnected, !chip3.read(LedWifiConnected));
+        // chip3.write(LedWifiConnected, !chip3.read(LedWifiConnected));
         slog(".");
         waitingWifi++;
       }
       slogln("");
-      //SetupUDP();
+      // SetupUDP();
     }
     else if (WiFi.getMode() < 2)
     {
       wifiConectAP();
-      //SetupUDP();
+      // SetupUDP();
     }
   }
   if (WiFi.getMode() != 1)
@@ -78,7 +78,7 @@ void getAvalibleNetwork()
   scanningWifi = n;
   if (n >= 0)
   {
-    //scanningWifi = n;
+    // scanningWifi = n;
     slogln((String)n + " network(s) found");
     vListaWifi = "";
     for (int i = 0; i < n; i++)
@@ -93,7 +93,7 @@ void getAvalibleNetwork()
   else if ((millisAtual > millisNetworkScan) && n != -1)
   {
     millisNetworkScan = millisAtual + 30000;
-    //scanningWifi = n;
+    // scanningWifi = n;
     slogln("\nNetwork scan started");
     WiFi.scanNetworks(true);
   }
@@ -194,9 +194,9 @@ void wifiConectSTA()
   WiFi.config(ip, gateway, subnet, DNS1, DNS2);
   WiFi.begin(ssid, password);
 
-  chip3.write(LedWifiConnected, LOW);
-  chip3.write(LedWifiHI, HIGH);
-  chip3.write(LedWifiLOW, HIGH);
+  // chip3.write(LedWifiConnected, LOW);
+  // chip3.write(LedWifiHI, HIGH);
+  // chip3.write(LedWifiLOW, HIGH);
 }
 
 void wifiConectAP()
@@ -207,9 +207,9 @@ void wifiConectAP()
 
   WiFi.mode(WIFI_AP);
   tipoWifiAtual = 2;
-  //listawifi();
-  //getAvalibleNetwork();
-  //chip3.write(LedWiFI, HIGH);
+  // listawifi();
+  // getAvalibleNetwork();
+  // //chip3.write(LedWiFI, HIGH);
   IPAddress local_IP(DevSet.apWifiIP);
   IPAddress gateway(DevSet.apWifiGTW);
   IPAddress subnet(DevSet.apWifiMSK);
@@ -219,7 +219,7 @@ void wifiConectAP()
 
   slog("Setting soft-AP ... ");
   slogln("idencitifcador");
-  //int chipId = ESP.getChipId();
+  // int chipId = ESP.getChipId();
   String NomeRede = "KEEPIN_" + gchipId;
   slogln(NomeRede);
   const char *nRede = NomeRede.c_str();
@@ -229,7 +229,7 @@ void wifiConectAP()
 
   if (!WiFi.softAP(nRede, vSenhaAP.c_str()))
   {
-    //wifireset2();
+    // wifireset2();
     DevSet.factoryReset();
   }
 
@@ -238,13 +238,13 @@ void wifiConectAP()
   IpDispositivo = local_IP;
   setBroadcastIP(DevSet.apWifiMSK);
 
-  chip3.write(LedWifiConnected, HIGH);
-  chip3.write(LedWifiHI, HIGH);
-  chip3.write(LedWifiLOW, HIGH);
+  // chip3.write(LedWifiConnected, HIGH);
+  // chip3.write(LedWifiHI, HIGH);
+  // chip3.write(LedWifiLOW, HIGH);
 }
 
 void SetupPing()
-{ //execute ping routine
+{ // execute ping routine
   for (int i = 0; i < numDNSquery; i++)
   {
     if (ips[i])
@@ -257,8 +257,7 @@ void SetupPing()
                 {
                   IPAddress addr(response.addr);
                   if (!response.answer)
-                    return false;
-                });
+                    return false; });
 
     Pings[i].on(false, [](const AsyncPingResponse &response)
                 {
@@ -281,8 +280,7 @@ void SetupPing()
                     enableConnection = false;
                     hasInternet = false;
                   }
-                  return true;
-                });
+                  return true; });
   }
 
   LoopPing();
@@ -322,7 +320,7 @@ void setBroadcastIP(uint32_t _currentSubnet)
   IPAddress _broadcastIP(_currentSubnet);
   for (int i = 0; i <= 3; i++)
   {
-    //slogln(_broadcastIP[i]);
+    // slogln(_broadcastIP[i]);
     (_broadcastIP[i] == 0) ? _broadcastIP[i] = 255 : _broadcastIP[i] = IpDispositivo[i];
   }
   broadcastIP = _broadcastIP;

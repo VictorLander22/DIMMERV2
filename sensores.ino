@@ -43,8 +43,8 @@ void trataDevice(String (&Devices)[20])
 
 void trataSensores()
 {
-  uint16_t inValues = sensor2.read8() << 8 | sensor1.read8();
-  uint16_t outValues = chip2.read8() << 8 | chip1.read8();
+  // uint16_t inValues = sensor2.read8() << 8 | sensor1.read8();
+  // uint16_t outValues = chip2.read8() << 8 | chip1.read8();
   String sInValues, sOutValues;
   static unsigned long limparUltimoDisparo = 0;
 
@@ -52,13 +52,13 @@ void trataSensores()
   {
     if (i < 8)
     {
-      sInValues += (String)bitRead(inValues, 7 - i);
-      sOutValues += (String)bitRead(outValues, 7 - i);
+      // sInValues += (String)bitRead(inValues, 7 - i);
+      // sOutValues += (String)bitRead(outValues, 7 - i);
     }
     else
     {
-      sInValues += (String)bitRead(inValues, 15 - (i - 8));
-      sOutValues += (String)bitRead(outValues, 15 - (i - 8));
+      // sInValues += (String)bitRead(inValues, 15 - (i - 8));
+      // sOutValues += (String)bitRead(outValues, 15 - (i - 8));
     }
   }
 
@@ -87,31 +87,31 @@ void trataSensores()
   {
     //  if (SensorAlterado && (sSensor1 != "11111111" || sSensor2 != "11111111"))
     // if (verificaSensores(numSensor, valorSensores[numSensor]))
-    if (verificaSensores(numSensor, (String)bitRead(inValues, numSensor)))
-    {
-      if (msgDisparada[numSensor] == false)
-      {
-        if (notificar)
-        {
-          if (nomeSensores[numSensor + 1] != "")
-          {
-            // sendDataToFirebase("Sensor " + nomeSensores[numSensor + 1] + " disparado", numSensor, "1");
-          }
-          else
-          {
-            // sendDataToFirebase("Sensor " + String(numSensor + 1) + " disparado", numSensor, "1");
-          }
-        }
-        else if (enviarsms)
-        {
-          // sms sendSMS(numSensor);
-          slogln("Sensor disparado");
-        }
-        ultimoDisparo = sInValues; // sSensor1 + sSensor2;
-        limparUltimoDisparo = 0;
-        slogln("Sensor disparado");
-      }
-    }
+    // if (verificaSensores(numSensor, (String)bitRead(inValues, numSensor)))
+    // {
+    //   if (msgDisparada[numSensor] == false)
+    //   {
+    //     if (notificar)
+    //     {
+    //       if (nomeSensores[numSensor + 1] != "")
+    //       {
+    //         // sendDataToFirebase("Sensor " + nomeSensores[numSensor + 1] + " disparado", numSensor, "1");
+    //       }
+    //       else
+    //       {
+    //         // sendDataToFirebase("Sensor " + String(numSensor + 1) + " disparado", numSensor, "1");
+    //       }
+    //     }
+    //     else if (enviarsms)
+    //     {
+    //       // sms sendSMS(numSensor);
+    //       slogln("Sensor disparado");
+    //     }
+    //     ultimoDisparo = sInValues; // sSensor1 + sSensor2;
+    //     limparUltimoDisparo = 0;
+    //     slogln("Sensor disparado");
+    //   }
+    // }
   }
 }
 
@@ -209,20 +209,20 @@ void trataSensores()
 
 void lersensores()
 {
-  String sSensor1 = String(sensor1.read8(), BIN);
-  String sSensor2 = String(sensor2.read8(), BIN);
+  // String sSensor1 = String(sensor1.read8(), BIN);
+  // String sSensor2 = String(sensor2.read8(), BIN);
 
-  while (sSensor1.length() < 8)
-  {
-    sSensor1 = '0' + sSensor1;
-  }
+  // while (sSensor1.length() < 8)
+  // {
+  //   sSensor1 = '0' + sSensor1;
+  // }
 
-  while (sSensor2.length() < 8)
-  {
-    sSensor2 = '0' + sSensor2;
-  }
+  // while (sSensor2.length() < 8)
+  // {
+  //   sSensor2 = '0' + sSensor2;
+  // }
 
-  gRequest->send(200, sdefTextHtml, sSensor1);
+  // gRequest->send(200, sdefTextHtml, sSensor1);
 }
 
 void AsyncSaveInputConfig()

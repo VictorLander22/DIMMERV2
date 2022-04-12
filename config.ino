@@ -191,8 +191,8 @@ void Memoria()
   {
     slogln("Set outputs ON: " + (String)memRtc.getOutputs());
     uint16_t outputs = memRtc.getOutputs();
-    chip1.write8(outputs & 0xff);
-    chip2.write8((outputs >> 8) & 0xff);
+    // chip1.write8(outputs & 0xff);
+    // chip2.write8((outputs >> 8) & 0xff);
   }
 }
 

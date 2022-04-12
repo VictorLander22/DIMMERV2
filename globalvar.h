@@ -48,7 +48,7 @@ const String sdefTextHtml = "text/html";
 #include "src\KPDeviceSetting.h"
 #include "src\KPPCF8583Class.h"
 #include "src\webpage.h"
-//#include "src\KPSomfy.h"// deletei a lib da pasta pra fazer teste
+//#include "src\KPSomfy.h"//
 
 const String cloudServer = "http://cloud.keepin.com.br/api/";
 const char *mqtt_server = "cloudmqtt.keepin.com.br";
@@ -66,8 +66,8 @@ unsigned long millisAtual;
 unsigned long millisDebug;
 unsigned long millisMqttReconnect;
 unsigned long millisNetworkScan;
-//unsigned long lastDisplay;
-//unsigned long millisIREnabled;
+// unsigned long lastDisplay;
+// unsigned long millisIREnabled;
 unsigned long millisSendUDP;
 unsigned long millisFreeMemory;
 
@@ -112,7 +112,7 @@ SSD1306Wire display(0x3c, -1, -1, GEOMETRY_128_64, I2C_ONE, 100000); //, D1, D2)
 String s2Sensor1 = "";
 String s2Sensor2 = "";
 
-int buttonState = 13;
+int buttonState = 13; // 12 pino de reset do d1 mini pro ???? Nao  funcionando tb, 13 o anterior
 int counter = 0;
 int counterRTC = 0;
 boolean AgendaAlterada = true;
@@ -179,52 +179,52 @@ unsigned long interval = 2000;
 String Senha = "kdi9e";
 
 //   IR   //
-//uint16_t RECV_PIN = 14;
-//uint16_t CAPTURE_BUFFER_SIZE = 1024;
-//const uint16_t kMinUnknownSize = 12;
+// uint16_t RECV_PIN = 14;
+// uint16_t CAPTURE_BUFFER_SIZE = 1024;
+// const uint16_t kMinUnknownSize = 12;
 //#define TIMEOUT 15U
 //#if DECODE_AC
-//const uint8_t TIMEOUT = 50;
+// const uint8_t TIMEOUT = 50;
 //#else
-//const uint8_t TIMEOUT = 15;
+// const uint8_t TIMEOUT = 15;
 //#endif
 //#define TIMEOUT 15U
-//IRrecv irrecv(RECV_PIN, CAPTURE_BUFFER_SIZE, TIMEOUT, true);
-//decode_results results;
-//irparams_t save;
-//int tamanho = -1;
-//String codigoIR = "-1";
+// IRrecv irrecv(RECV_PIN, CAPTURE_BUFFER_SIZE, TIMEOUT, true);
+// decode_results results;
+// irparams_t save;
+// int tamanho = -1;
+// String codigoIR = "-1";
 
-//IRsend irsend(16);
-//boolean enReadIR = false;
-//int Modelo = 0;
-//boolean irEnSend = false;
-//uint16_t irNumBits;
-//uint16_t irModel;
-//uint8_t irPort;
-//String irData = "";
+// IRsend irsend(16);
+// boolean enReadIR = false;
+// int Modelo = 0;
+// boolean irEnSend = false;
+// uint16_t irNumBits;
+// uint16_t irModel;
+// uint8_t irPort;
+// String irData = "";
 
 //   IR   //
 
 //   RF  //
-//RCSwitch mySwitch = RCSwitch();
-//RCSwitch sSendRF = RCSwitch();
-//int rxRF = 12;
-//int txRF = 15;
+// RCSwitch mySwitch = RCSwitch();
+// RCSwitch sSendRF = RCSwitch();
+// int rxRF = 12;
+// int txRF = 15;
 // boolean enReadRF = false;
-//int tamanhoRF = -1;
-//int gProtocoloRF = 1;
-//String codigoRF = "-1";
-//boolean SensorRFAlterado = true;
-//String SensoresRF[30] = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
-//boolean sensorRFDisparado = false;
-//int numSensorDisparado = -1;
-//String ultimoDisparoRF = "";
-//boolean estadoAtualRF[30] = {LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW};
-//boolean ultimoEstadoRF[30] = {LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW};
-//boolean msgDisparadaRF[30] = {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
-//int numSensorMSG = 0;
-//unsigned long rfmilis = 0;
+// int tamanhoRF = -1;
+// int gProtocoloRF = 1;
+// String codigoRF = "-1";
+// boolean SensorRFAlterado = true;
+// String SensoresRF[30] = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
+// boolean sensorRFDisparado = false;
+// int numSensorDisparado = -1;
+// String ultimoDisparoRF = "";
+// boolean estadoAtualRF[30] = {LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW};
+// boolean ultimoEstadoRF[30] = {LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW};
+// boolean msgDisparadaRF[30] = {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
+// int numSensorMSG = 0;
+// unsigned long rfmilis = 0;
 //   RF  //
 int Buzzer = 3;
 
@@ -275,7 +275,7 @@ uint16_t lastOutputs;
 const uint8_t dispY[5] = {1, 14, 30, 42, 54};
 String dispText[5] = {"", "", "", "", ""};
 uint8_t dispLine = 0;
-//bool hasDisplay = false;
+// bool hasDisplay = false;
 bool clock2s;
 
 String idChip = "";
@@ -288,7 +288,11 @@ String *clientestr;
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-//Somfy somfy(txRF, 0x00000000); // initial remote id - change this one,  it will be incremented for remotes added afterwards
+// Somfy somfy(txRF, 0x00000000); // initial remote id - change this one,  it will be incremented for remotes added afterwards
 
 boolean enReadDimmer = false;
 // DIMMER//
+// int lstDimmer1, lstDimmer2, lstDimmer3, lstDimmer4 = -1;
+uint8_t lstDimmer[4];           // armazena os valores de ultimo estado ao apertar o off no dimmer
+uint8_t vectorLeituraDimmer[5]; // le um vetor de 5 bytes,byte do vetor 0 a 3  luminosidade da lampada,byte do vetor 4 modo energ_onoff
+uint8_t vectorValueDimmer[4];   // vetor de 4 bytes,0-qual lamp ? ,1-valor de luminosidade,2-modo energ on ou off,3-XOR feita pelo codigo

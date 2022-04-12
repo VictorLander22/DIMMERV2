@@ -67,20 +67,18 @@ public:
   uint32_t convUint32(byte *d);
 
 private:
-  const byte CFG_MODE = 0;                    //0
-  const byte CFG_WIFISSID = CFG_MODE + 1;     //1
-  const byte CFG_WIFIPWD = CFG_WIFISSID + 35; //36
-  const byte CFG_WIFIIP = CFG_WIFIPWD + 35;   //71
-  const byte CFG_WIFIMSK = CFG_WIFIIP + 4;    //75
-  const byte CFG_WIFIGTW = CFG_WIFIMSK + 4;   //79
-  const byte CFG_APIPWD = CFG_WIFIGTW + 4;    //83
-  const byte CFG_APWIFIPWD = CFG_APIPWD + 35; //118
-  const byte CFG_UTC = CFG_APWIFIPWD + 35;    //153
-  const byte CFG_HTTPUSER = CFG_UTC + 1;      //154
-  const byte CFG_HTTPPWD = CFG_HTTPUSER + 35; //189
-  const byte CFG_TOTAL = CFG_HTTPPWD + 35;    //224
-  // const byte  CFG_SOMFY = CFG_HTTPPWD + 35;    //224 somfy retirada do dimmer 4
-  //const word CFG_TOTAL = CFG_SOMFY + 20;      //244
+  const byte CFG_MODE = 0;
+  const byte CFG_WIFISSID = CFG_MODE + 1;
+  const byte CFG_WIFIPWD = CFG_WIFISSID + 35;
+  const byte CFG_WIFIIP = CFG_WIFIPWD + 35;
+  const byte CFG_WIFIMSK = CFG_WIFIIP + 4;
+  const byte CFG_WIFIGTW = CFG_WIFIMSK + 4;
+  const byte CFG_APIPWD = CFG_WIFIGTW + 4;
+  const byte CFG_APWIFIPWD = CFG_APIPWD + 35;
+  const byte CFG_UTC = CFG_APWIFIPWD + 35;
+  const byte CFG_HTTPUSER = CFG_UTC + 1;
+  const byte CFG_HTTPPWD = CFG_HTTPUSER + 35;
+  const word CFG_TOTAL = CFG_HTTPPWD + 35;
 
   void _factoryDefault();
 };
