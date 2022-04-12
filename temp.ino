@@ -86,77 +86,77 @@
 }
 */
 
-//void SetupDimmer() Para com por serial
+// void SetupDimmer() Para com por serial
 //{
 
-//pinMode(1, FUNCTION_3);
+// pinMode(1, FUNCTION_3);
 
 //  pinMode(3, FUNCTION_3);
 //}
 
-//void SendValueDimmer(String port, String value)
+// void SendValueDimmer(String port, String value)
 //{
-// Comparaçao do valor com 170 em uma XOR,valores diff igual a 1.
-// uint8_t valueXor = value.toInt() ^ 170;
-//Serial.print(String(value.toInt()));
-//Serial.print(String(valueXor));
-//char frame[3] = "";
+//  Comparaçao do valor com 170 em uma XOR,valores diff igual a 1.
+//  uint8_t valueXor = value.toInt() ^ 170;
+// Serial.print(String(value.toInt()));
+// Serial.print(String(valueXor));
+// char frame[3] = "";
 
 // switch case pro char da port
-//switch (port.toInt())
+// switch (port.toInt())
 //{
-//case 1:
+// case 1:
 //  frame[0] = 'm';
-//break;
-//case 2:
+// break;
+// case 2:
 //  frame[0] = 'n';
-//break;
-//case 3:
+// break;
+// case 3:
 //  frame[0] = 'o';
-//break;
-//case 4:
+// break;
+// case 4:
 //  frame[0] = 'p';
-//break;
-//default:
+// break;
+// default:
 //  break;
 //}
 
-//delay(200);
-//Serial.print(frame[0]);
-//Serial.print(char(atoi(value.c_str())));
-//Serial.print(char(valueXor));
-//delay(200);
-//}
+// delay(200);
+// Serial.print(frame[0]);
+// Serial.print(char(atoi(value.c_str())));
+// Serial.print(char(valueXor));
+// delay(200);
+// }
 
-void ReadDimmerValue()
+void ReadDimmerValue(int index)
 {
-    uint8_t vectorLeituraDimmer[5];
-    // le um vetor de 5 bytes,byte do vetor 0 a 3  luminosidade da lampada,byte do vetor 4 modo energ_onoff
-    //lamp 1//
+
+    // lamp 1//
     Wire.requestFrom(0x38, 1, 1);
     vectorLeituraDimmer[0] = Wire.read();
-    //lamp 2//
+    // lamp 2//
     Wire.requestFrom(0x38, 1, 1);
     vectorLeituraDimmer[1] = Wire.read();
-    //lamp 3//
+    // lamp 3//
     Wire.requestFrom(0x38, 1, 1);
     vectorLeituraDimmer[2] = Wire.read();
-    //lamp 4//
+    // lamp 4//
     Wire.requestFrom(0x38, 1, 1);
     vectorLeituraDimmer[3] = Wire.read();
-    //modo energ//
+    // modo energ//
     Wire.requestFrom(0x38, 1, 1);
     vectorLeituraDimmer[4] = Wire.read();
 
     for (byte i = 0; i < 5; i++)
+
     {
 
         Serial.println(vectorLeituraDimmer[i]);
     }
+    gRequest->send(200, sdefTextHtml, String(vectorLeituraDimmer[index]));
 }
 void SendValueDimmerI2C(String port, String value, String modo_energ)
 {
-    uint8_t vectorValueDimmer[4]; //vetor de 4 bytes,0-qual lamp ? ,1-valor de luminosidade,2-modo energ on ou off,3-XOR feita pelo codigo
 
     vectorValueDimmer[0] = port.toInt();
     vectorValueDimmer[1] = value.toInt();
@@ -165,7 +165,7 @@ void SendValueDimmerI2C(String port, String value, String modo_energ)
     uint8_t valueXor = vectorValueDimmer[0] ^ vectorValueDimmer[1] ^ vectorValueDimmer[2];
 
     vectorValueDimmer[3] = valueXor;
-    //vectorValueDimmer[3] = Xor.toInt();
+    // vectorValueDimmer[3] = Xor.toInt();
     Wire.beginTransmission(0x38);      // caso o endereco n seja este verificar com um codigo de Scan de enderecos I2C
     for (byte i = 0; i < 4; i = i + 1) //  loop for para escrever parte a parte do vetor
     {
@@ -175,9 +175,31 @@ void SendValueDimmerI2C(String port, String value, String modo_energ)
     }
 
     Wire.endTransmission();
-    //prints
-    //  Serial.println(vectorValueDimmer[0]);
-    // Serial.println(vectorValueDimmer[1]);
-    // Serial.println(vectorValueDimmer[2]);
-    // Serial.println(vectorValueDimmer[3]);
+    // prints
+    //   Serial.println(vectorValueDimmer[0]);
+    //  Serial.println(vectorValueDimmer[1]);
+    //  Serial.println(vectorValueDimmer[2]);
+    //  Serial.println(vectorValueDimmer[3]);
+}
+
+void offDimmer(String port)
+{
+
+    ReadDimmerValue(port.toInt() - 1);                                   // - 1 pq o index comeca de 0
+    lstDimmer[port.toInt() - 1] = vectorLeituraDimmer[port.toInt() - 1]; // -1 Porque os vetores comecam de 0
+    SendValueDimmerI2C(port, "0", "0");
+
+    slogln(F("O valor do vetor lstdimmer e ................."));
+    Serial.println(lstDimmer[0]);
+    Serial.println(lstDimmer[1]);
+    Serial.println(lstDimmer[2]);
+    Serial.println(lstDimmer[3]);
+}
+void onDimmer(String port)
+{
+    SendValueDimmerI2C(port, String(lstDimmer[port.toInt() - 1]), "0");
+    gRequest->send(200, sdefTextHtml, String(lstDimmer[port.toInt() - 1]));
+
+    slogln(F("O valor enviado a funcao de sendo e ....."));
+    Serial.println(lstDimmer[port.toInt() - 1]);
 }
