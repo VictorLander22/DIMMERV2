@@ -1,11 +1,12 @@
 void api()
 {
-  String vPassApi, action, apiPort, apiSource, valueApi, typeApi, formatApi, ret = "-1";
+  String vPassApi, action, apiPort, apiSource, valueApi, typeApi, formatApi, apiIndex, ret = "-1";
   bool isPost = false;
   if (!newMqttMsg)
   {
     isPost = true;
     vPassApi = gRequest->arg("pw");
+    apiIndex = gRequest->arg("i");
     vPassApi.toLowerCase();
     action = gRequest->arg("a");
     apiPort = gRequest->arg("p");
@@ -13,19 +14,20 @@ void api()
     valueApi = gRequest->arg("v");
     typeApi = gRequest->arg("t");
     formatApi = gRequest->arg("f"); // criado para a apliacao do dimmer(line 295)
-    //if (action == "i")
+    // if (action == "i")
     //{
-    //  irNumBits = gRequest->arg("qt1").toInt();
-    // irModel = gRequest->arg("m1").toInt();
-    // irPort = gRequest->arg("p1").toInt();
-    //  irData = gRequest->arg("c1") + gRequest->arg("c12");
-    // }
+    //   irNumBits = gRequest->arg("qt1").toInt();
+    //  irModel = gRequest->arg("m1").toInt();
+    //  irPort = gRequest->arg("p1").toInt();
+    //   irData = gRequest->arg("c1") + gRequest->arg("c12");
+    //  }
   }
   else
   {
     newMqttMsg = false;
-    //isPost = false;
+    // isPost = false;
     vPassApi = MqttArg(msgMqtt, "pw");
+    apiIndex = MqttArg(msgMqtt, "i");
     vPassApi.toLowerCase();
     action = MqttArg(msgMqtt, "a");
     apiPort = MqttArg(msgMqtt, "p");
@@ -33,20 +35,20 @@ void api()
     valueApi = MqttArg(msgMqtt, "v");
     typeApi = MqttArg(msgMqtt, "t");
     formatApi = MqttArg(msgMqtt, "f"); // criado para a apliacao do dimmer(line 295)
-    //if (action == "i")
-    // {
-    //   irNumBits = MqttArg(msgMqtt, "qt1").toInt();
-    //   irModel = MqttArg(msgMqtt, "m1").toInt();
-    //  irPort = MqttArg(msgMqtt, "p1").toInt();
-    //  irData = MqttArg(msgMqtt, "c1");
-    //  }
+    // if (action == "i")
+    //  {
+    //    irNumBits = MqttArg(msgMqtt, "qt1").toInt();
+    //    irModel = MqttArg(msgMqtt, "m1").toInt();
+    //   irPort = MqttArg(msgMqtt, "p1").toInt();
+    //   irData = MqttArg(msgMqtt, "c1");
+    //   }
   }
   if (AlowApi == true && vPassApi == ApiPass)
   {
     slogln(action);
-    if (action == "q") //consulta
+    if (action == "q") // consulta
     {
-      //todas portas
+      // todas portas
       if (apiPort == "a")
       {
         String sDados1 = ""; //(char *)malloc(64);
@@ -54,8 +56,8 @@ void api()
 
         if (apiSource == "o") // saidas
         {
-          // sDados1 = String(chip1.read8(), BIN);
-          // sDados2 = String(chip2.read8(), BIN);
+          sDados1 = String(chip1.read8(), BIN);
+          sDados2 = String(chip2.read8(), BIN);
         }
         else if (apiSource == "i") // entradas
         {
@@ -64,7 +66,7 @@ void api()
         }
         else
         {
-          //sDados1 = '00000000';
+          // sDados1 = '00000000';
           sDados1 = "00000000";
           sDados2 = "00000000";
         }
@@ -142,8 +144,8 @@ void api()
           {
             if (typeApi == "n" || typeApi == "p")
             {
-              // chip1.write8(255);
-              //chip2.write8(255);
+              chip1.write8(255);
+              chip2.write8(255);
               SaveOutputs();
               ret = "1";
             }
@@ -152,15 +154,15 @@ void api()
           {
             if (typeApi == "n")
             {
-              // chip1.write8(0);
-              //chip2.write8(0);
+              chip1.write8(0);
+              chip2.write8(0);
               SaveOutputs();
               ret = "1";
             }
             else if (typeApi == "p")
             {
-              //chip1.write8(0);
-              //chip2.write8(0);
+              chip1.write8(0);
+              chip2.write8(0);
               for (uint8_t pulsoApiCount = 0; pulsoApiCount <= 15; pulsoApiCount++)
               {
                 g_tempoInicioPulso[pulsoApiCount] = millisAtual;
@@ -176,7 +178,7 @@ void api()
       {
         if (apiSource == "o") // saidas
         {
-          if (typeApi == "n") //normal
+          if (typeApi == "n") // normal
           {
             if (valueApi == "0") // desliga
             {
@@ -214,7 +216,7 @@ void api()
     {
       ret = "1";
       slogln("Numero da cena: " + valueApi);
-      // triggerCena(valueApi);
+      triggerCena(valueApi);
     }
     else if (action == "l") // linha de ação
     {
@@ -267,8 +269,19 @@ void api()
       if (typeApi == "r") // Para leitura
       {
         slogln(F("Entrei read  API"));
-        ReadDimmerValue();
-        ret = "1";
+        ReadDimmerValue(apiIndex.toInt());
+        // ret = "1";
+      }
+      if (typeApi == "off")
+      {
+        slogln(F("Entrei off dimmer  API"));
+        offDimmer(apiPort);
+        // ret = "1";
+      }
+      if (typeApi == "on")
+      {
+        slogln(F("Entrei on dimmer  API"));
+        onDimmer(apiPort);
       }
     }
   }

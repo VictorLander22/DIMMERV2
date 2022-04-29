@@ -20,18 +20,18 @@ void sendCloud(bool onlyNotify = false)
     sSensor2 = '0' + sSensor2;
   }
 
-  // String sChip1 = String(chip1.read8(), BIN);
-  //String sChip2 = String(chip2.read8(), BIN);
+  String sChip1 = String(chip1.read8(), BIN);
+  String sChip2 = String(chip2.read8(), BIN);
 
-  // while (sChip1.length() < 8)
-  ///{
-  //sChip1 = '0' + sChip1;
-  //}
+  while (sChip1.length() < 8)
+  {
+    sChip1 = '0' + sChip1;
+  }
 
-  //while (sChip2.length() < 8)
-  //{
-  //sChip2 = '0' + sChip2;
-  //}
+  while (sChip2.length() < 8)
+  {
+    sChip2 = '0' + sChip2;
+  }
 
   // int32_t rssi;
   // rssi = WiFi.RSSI();
@@ -39,22 +39,22 @@ void sendCloud(bool onlyNotify = false)
   String dataPost = "";
   dataPost = "{";
   dataPost = dataPost + "\"idchip\": \"" + vchipId + "\",";
-  //dataPost = dataPost + "\"SD1\": \"" + retornaValorCloud(sChip1[7]) + "\",";
-  //dataPost = dataPost + "\"SD2\": \"" + retornaValorCloud(sChip1[6]) + "\",";
-  //dataPost = dataPost + "\"SD3\": \"" + retornaValorCloud(sChip1[5]) + "\",";
-  //dataPost = dataPost + "\"SD4\": \"" + retornaValorCloud(sChip1[4]) + "\",";
-  //dataPost = dataPost + "\"SD5\": \"" + retornaValorCloud(sChip1[3]) + "\",";
-  //dataPost = dataPost + "\"SD6\": \"" + retornaValorCloud(sChip1[2]) + "\",";
-  //dataPost = dataPost + "\"SD7\": \"" + retornaValorCloud(sChip1[1]) + "\",";
-  //dataPost = dataPost + "\"SD8\": \"" + retornaValorCloud(sChip1[0]) + "\",";
-  //dataPost = dataPost + "\"SD9\": \"" + retornaValorCloud(sChip2[7]) + "\",";
-  //dataPost = dataPost + "\"SD10\": \"" + retornaValorCloud(sChip2[6]) + "\",";
-  //dataPost = dataPost + "\"SD11\": \"" + retornaValorCloud(sChip2[5]) + "\",";
-  //dataPost = dataPost + "\"SD12\": \"" + retornaValorCloud(sChip2[4]) + "\",";
-  //dataPost = dataPost + "\"SD13\": \"" + retornaValorCloud(sChip2[3]) + "\",";
-  //dataPost = dataPost + "\"SD14\": \"" + retornaValorCloud(sChip2[2]) + "\",";
-  //dataPost = dataPost + "\"SD15\": \"" + retornaValorCloud(sChip2[1]) + "\",";
-  //dataPost = dataPost + "\"SD16\": \"" + retornaValorCloud(sChip2[0]) + "\",";
+  dataPost = dataPost + "\"SD1\": \"" + retornaValorCloud(sChip1[7]) + "\",";
+  dataPost = dataPost + "\"SD2\": \"" + retornaValorCloud(sChip1[6]) + "\",";
+  dataPost = dataPost + "\"SD3\": \"" + retornaValorCloud(sChip1[5]) + "\",";
+  dataPost = dataPost + "\"SD4\": \"" + retornaValorCloud(sChip1[4]) + "\",";
+  dataPost = dataPost + "\"SD5\": \"" + retornaValorCloud(sChip1[3]) + "\",";
+  dataPost = dataPost + "\"SD6\": \"" + retornaValorCloud(sChip1[2]) + "\",";
+  dataPost = dataPost + "\"SD7\": \"" + retornaValorCloud(sChip1[1]) + "\",";
+  dataPost = dataPost + "\"SD8\": \"" + retornaValorCloud(sChip1[0]) + "\",";
+  dataPost = dataPost + "\"SD9\": \"" + retornaValorCloud(sChip2[7]) + "\",";
+  dataPost = dataPost + "\"SD10\": \"" + retornaValorCloud(sChip2[6]) + "\",";
+  dataPost = dataPost + "\"SD11\": \"" + retornaValorCloud(sChip2[5]) + "\",";
+  dataPost = dataPost + "\"SD12\": \"" + retornaValorCloud(sChip2[4]) + "\",";
+  dataPost = dataPost + "\"SD13\": \"" + retornaValorCloud(sChip2[3]) + "\",";
+  dataPost = dataPost + "\"SD14\": \"" + retornaValorCloud(sChip2[2]) + "\",";
+  dataPost = dataPost + "\"SD15\": \"" + retornaValorCloud(sChip2[1]) + "\",";
+  dataPost = dataPost + "\"SD16\": \"" + retornaValorCloud(sChip2[0]) + "\",";
   dataPost = dataPost + "\"ED1\": \"" + retornaValorCloud(sSensor1[7]) + "\",";
   dataPost = dataPost + "\"ED2\": \"" + retornaValorCloud(sSensor1[6]) + "\",";
   dataPost = dataPost + "\"ED3\": \"" + retornaValorCloud(sSensor1[5]) + "\",";
@@ -171,9 +171,9 @@ void sendCloud(bool onlyNotify = false)
           porta = retornaPorta(porta);
           if (porta >= 0)
           {
-            //  cenaPAtual++;
+            cenaPAtual++;
 
-            // lastCnTime = millisAtual;
+            lastCnTime = millisAtual;
             delay(300);
           }
         }
@@ -185,7 +185,7 @@ void sendCloud(bool onlyNotify = false)
         //}
         else if (tipoJson == "5")
         {
-          //triggerCena(acaoJson);
+          triggerCena(acaoJson);
         }
         else if (tipoJson == "6") // notificacao
         {

@@ -44,7 +44,7 @@ void trataDevice(String (&Devices)[20])
 void trataSensores()
 {
   uint16_t inValues = sensor2.read8() << 8 | sensor1.read8();
-  // uint16_t outValues = chip2.read8() << 8 | chip1.read8();
+  uint16_t outValues = chip2.read8() << 8 | chip1.read8();
   String sInValues, sOutValues;
   static unsigned long limparUltimoDisparo = 0;
 
@@ -53,12 +53,12 @@ void trataSensores()
     if (i < 8)
     {
       sInValues += (String)bitRead(inValues, 7 - i);
-      // sOutValues += (String)bitRead(outValues, 7 - i);
+      sOutValues += (String)bitRead(outValues, 7 - i);
     }
     else
     {
       sInValues += (String)bitRead(inValues, 15 - (i - 8));
-      // sOutValues += (String)bitRead(outValues, 15 - (i - 8));
+      sOutValues += (String)bitRead(outValues, 15 - (i - 8));
     }
   }
 
@@ -459,7 +459,7 @@ boolean verificaSensores(int nsensor, String vsAtual)
           lastDebounceTime = millisAtual;
           if (vTipo2 == "2") // cenas
           {
-            // triggerCena(PortaAparelho2);
+            triggerCena(PortaAparelho2);
           }
           else if (vTipo2 == "1")
           {
@@ -567,7 +567,7 @@ boolean verificaSensores(int nsensor, String vsAtual)
         lastDebounceTime = millisAtual;
         if (vTipo2 == "2") // cenas
         {
-          // triggerCena(PortaAparelho2);
+          triggerCena(PortaAparelho2);
         }
         else if (vTipo2 == "1")
         {
@@ -866,7 +866,7 @@ boolean verificaSensores(int nsensor, String vsAtual)
         if ((millisAtual - lastDebounceTime) > debounceDelay)
         {
           // cena1
-          // triggerCena(PortaAparelho);
+          triggerCena(PortaAparelho);
         }
       }
       else if (estadoAtual[nsensor] == LOW && ultimoEstado[nsensor] == HIGH)
@@ -874,7 +874,7 @@ boolean verificaSensores(int nsensor, String vsAtual)
         if ((millisAtual - lastDebounceTime) > debounceDelay)
         {
           // cena2
-          //  triggerCena(PortaAparelho2);
+          triggerCena(PortaAparelho2);
         }
       }
       valorRetorno = false;

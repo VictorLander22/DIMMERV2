@@ -50,7 +50,7 @@ void setup(void)
     slogln();
     slogln(F("Factory reset\n"));
 
-    DevSet.factoryReset();
+    // DevSet.factoryReset();
   }
   else
   {
@@ -128,7 +128,7 @@ void loop(void)
 
     LoopCloud();
 
-    // LoopAgenda();
+    LoopAgenda();
 
     LoopLedRunning();
 

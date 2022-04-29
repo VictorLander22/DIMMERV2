@@ -7,14 +7,14 @@ void ResetSaidasPulsadas()
       if (millisAtual >= g_tempoInicioPulso[iPorta] + pulseTime)
       {
         g_pulsoHabilita[iPorta] = false;
-        //if (iPorta < 8)
-        //{
-        // chip1.write(iPorta, HIGH);
-        //}
-        //else
-        //{
-        //chip2.write(iPorta - 8, HIGH);
-        //}
+        if (iPorta < 8)
+        {
+          chip1.write(iPorta, HIGH);
+        }
+        else
+        {
+          chip2.write(iPorta - 8, HIGH);
+        }
         // memRtc.outValues = chip2.read8() << 8 | chip1.read8();
         // memRtc.setOutputs();
         SaveOutputs();
@@ -29,7 +29,7 @@ void LoopResetFabrica()
 
   if (digitalRead(buttonState))
   {
-    ESP.restart();
+    // ESP.restart();
   };
 }
 
@@ -42,7 +42,7 @@ void LoopLedStatus()
 
     checkOutput();
 
-    // chip3.write(LedWifiConnected, LOW);
+    chip3.write(LedWifiConnected, LOW);
     // if (!vConfigWIFI)
     //{
     millisWifiLed = millisAtual + 2000;
@@ -50,21 +50,21 @@ void LoopLedStatus()
     rssi = getRSSI();
     //(!DEBUG_ON) ?:   Serial.println(String(rssi));
 
-    //if (rssi >= -65)
-    //{
-    //chip3.write(LedWifiHI, LOW);
-    // chip3.write(LedWifiLOW, HIGH);
-    // }
-    //else if (rssi < -65 && rssi >= -100)
-    // {
-    //chip3.write(LedWifiHI, HIGH);
-    //  chip3.write(LedWifiLOW, LOW);
-    // }
-    // else
-    // {
-    // chip3.write(LedWifiHI, HIGH);
-    // chip3.write(LedWifiLOW, HIGH);
-    //}
+    if (rssi >= -65)
+    {
+      chip3.write(LedWifiHI, LOW);
+      chip3.write(LedWifiLOW, HIGH);
+    }
+    else if (rssi < -65 && rssi >= -100)
+    {
+      chip3.write(LedWifiHI, HIGH);
+      chip3.write(LedWifiLOW, LOW);
+    }
+    else
+    {
+      chip3.write(LedWifiHI, HIGH);
+      chip3.write(LedWifiLOW, HIGH);
+    }
   }
 }
 
@@ -73,7 +73,7 @@ void LoopLedRunning()
   if (millisAtual > millisLedRunning)
   {
     millisLedRunning = millisAtual + 200;
-    // chip3.write(LedRunning, !chip3.read(LedRunning));
+    chip3.write(LedRunning, !chip3.read(LedRunning));
   }
 }
 
@@ -97,8 +97,8 @@ void MillisResets()
     millisDebug = 0;
     millisMqttReconnect = 0;
     millisNetworkScan = 0;
-    //lastCnTime = 0;
-    //rfmilis = 0;
+    lastCnTime = 0;
+    // rfmilis = 0;
     millisWifiLed = 0;
     lastDebounceTime = 0;
     millisLedRunning = 0;
@@ -180,7 +180,7 @@ int32_t getRSSI()
 
 void SaveOutputs()
 {
-  //memRtc.outValues = chip2.read8() << 8 | chip1.read8();
+  memRtc.outValues = chip2.read8() << 8 | chip1.read8();
   if (TipoMemoria)
   {
     memRtc.setOutputs();
@@ -194,7 +194,7 @@ uint16_t getInputs()
 
 uint16_t getOutputs()
 {
-  // return ~(chip2.read8() << 8 | chip1.read8());
+  return ~(chip2.read8() << 8 | chip1.read8());
 }
 
 String getDevStatus()
@@ -327,7 +327,7 @@ String ReadFirstLine(String fName)
 
 void BeepBuzzer()
 {
-  //chip3.write(Buzzer, HIGH);
+  chip3.write(Buzzer, HIGH);
   delay(300);
-  // chip3.write(Buzzer, LOW);
+  chip3.write(Buzzer, LOW);
 }

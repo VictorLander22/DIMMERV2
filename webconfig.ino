@@ -65,12 +65,12 @@ void AsyncFunctions()
       retornachip();
     // else if (functionName == F("/chamaddns"))
     //   chamaddns();
-    // else if (functionName == F("/consultaagenda"))
-    // conagenda();
-    // else if (functionName == F("/gravaragenda"))
-    // gravaragenda();
-    // else if (functionName == F("/atualizahora"))
-    //  atualizahora();
+    else if (functionName == F("/consultaagenda"))
+      conagenda();
+    else if (functionName == F("/gravaragenda"))
+      gravaragenda();
+    else if (functionName == F("/atualizahora"))
+      atualizahora();
     else if (functionName == F("/lersensores"))
       lersensores();
     else if (functionName == F("/consultasensor"))
@@ -124,8 +124,8 @@ void AsyncFunctions()
       apiconfig();
     else if (functionName == F("/alterasenhapi"))
       alterasenhapi();
-    // else if (functionName == F("/gravacena"))
-    // gravacena();
+    else if (functionName == F("/gravacena"))
+      gravacena();
     // else if (functionName == F("/log"))
     //   readlog();
     else if (functionName == F("/gravacloud"))
@@ -140,12 +140,10 @@ void AsyncFunctions()
       AsyncSaveInputConfig();
     else if (functionName == F("/reiniciar"))
       reiniciar();
+    else if (functionName == F(""))
+      Serial.println("Recebeu um valor vazio");
 
-    // else if (functionName == F("/teste"))
-    //   teste();
-    // else if (functionName == F("/teste1"))
-    //   teste1();
-    else
+        else
       handleNotFound();
   }
 }

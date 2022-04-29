@@ -48,7 +48,7 @@ const String sdefTextHtml = "text/html";
 #include "src\KPDeviceSetting.h"
 #include "src\KPPCF8583Class.h"
 #include "src\webpage.h"
-//#include "src\KPSomfy.h"// deletei a lib da pasta pra fazer teste
+//#include "src\KPSomfy.h"//
 
 const String cloudServer = "http://cloud.keepin.com.br/api/";
 const char *mqtt_server = "cloudmqtt.keepin.com.br";
@@ -93,15 +93,15 @@ IPAddress DNS2(4, 4, 4, 4);
 String vSenhaAP = "12345678";
 
 // Congiguração chips I2C
-// PCF8574 chip1(0x21, &Wire);
-// PCF8574 chip3(0x25, &Wire);
+PCF8574 chip1(0x21, &Wire);
+PCF8574 chip3(0x25, &Wire);
 PCF8574 sensor1(0x23, &Wire);
 #ifdef model8
 #include "src\KPPCFClass.h"
-// KPPCF chip2;
+KPPCF chip2;
 KPPCF sensor2;
 #else
-// PCF8574 chip2(0x22, &Wire);
+PCF8574 chip2(0x22, &Wire);
 PCF8574 sensor2(0x24, &Wire);
 #endif
 
@@ -112,11 +112,11 @@ SSD1306Wire display(0x3c, -1, -1, GEOMETRY_128_64, I2C_ONE, 100000); //, D1, D2)
 String s2Sensor1 = "";
 String s2Sensor2 = "";
 
-int buttonState = 13;
+int buttonState = 13; // 12 pino de reset do d1 mini pro ???? Nao  funcionando tb, 13 o anterior
 int counter = 0;
 int counterRTC = 0;
-// boolean AgendaAlterada = true;
-// String Agendas[6] = {"", "", "", "", "", ""};
+boolean AgendaAlterada = true;
+String Agendas[6] = {"", "", "", "", "", ""};
 
 boolean SensorAlterado = true;
 String Sensores[16] = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
@@ -240,11 +240,11 @@ String ApiPass = "12345678";
 int memorialivre = 0;
 
 //   CENAS   //
-// bool cenaExecucao = false;
-// String ArqCena = "";
-// int cenaPAtual = 0;
-// int cenaPTotal = 0;
-// unsigned long lastCnTime = -1;
+bool cenaExecucao = false;
+String ArqCena = "";
+int cenaPAtual = 0;
+int cenaPTotal = 0;
+unsigned long lastCnTime = -1;
 
 //   CLOUD ///
 bool usaCloud = false;
@@ -290,5 +290,9 @@ PubSubClient client(espClient);
 
 // Somfy somfy(txRF, 0x00000000); // initial remote id - change this one,  it will be incremented for remotes added afterwards
 
-// boolean enReadDimmer = false;
-//  DIMMER//
+boolean enReadDimmer = false;
+// DIMMER//
+// int lstDimmer1, lstDimmer2, lstDimmer3, lstDimmer4 = -1;
+uint8_t lstDimmer[4];           // armazena os valores de ultimo estado ao apertar o off no dimmer
+uint8_t vectorLeituraDimmer[5]; // le um vetor de 5 bytes,byte do vetor 0 a 3  luminosidade da lampada,byte do vetor 4 modo energ_onoff
+uint8_t vectorValueDimmer[4];   // vetor de 4 bytes,0-qual lamp ? ,1-valor de luminosidade,2-modo energ on ou off,3-XOR feita pelo codigo

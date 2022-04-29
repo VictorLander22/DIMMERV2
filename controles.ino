@@ -1,13 +1,13 @@
 void executaPulso(int porta)
 {
-  //if (porta < 8)
-  //{
-  //chip1.write(porta, LOW);
-  //}
-  //else
-  //{
-  // chip2.write(porta - 8, LOW);
-  //}
+  if (porta < 8)
+  {
+    chip1.write(porta, LOW);
+  }
+  else
+  {
+    chip2.write(porta - 8, LOW);
+  }
   g_tempoInicioPulso[porta] = millisAtual;
   g_pulsoHabilita[porta] = true;
 }
@@ -47,8 +47,8 @@ void controle()
   int Tipoa = gRequest->arg("pu").toInt();
   if (p == "a")
   {
-    //chip1.write8(f.toInt() & 0xff);
-    // chip2.write8((f.toInt() >> 8) & 0xff);
+    chip1.write8(f.toInt() & 0xff);
+    chip2.write8((f.toInt() >> 8) & 0xff);
     SaveOutputs();
   }
   else
@@ -120,14 +120,14 @@ void LigaDesliga(int vPorta, int vFuncao, String Nome, int Tipo)
 {
   if (Tipo != 1) //normal
   {
-    //if (vPorta < 8)
-    //{
-    //  chip1.write(vPorta, !vFuncao);
-    //}
-    //else
-    //{
-    // chip2.write(vPorta - 8, !vFuncao);
-    //}
+    if (vPorta < 8)
+    {
+      chip1.write(vPorta, !vFuncao);
+    }
+    else
+    {
+      chip2.write(vPorta - 8, !vFuncao);
+    }
     SaveOutputs();
   }
   else //pulsado
@@ -142,25 +142,25 @@ int LePorta(int vPorta)
 {
   if (vPorta < 8)
   {
-    // if (chip1.read(vPorta) == HIGH)
-    // {
-    // return LOW;
-    // }
-    //else
-    // {
-    //return HIGH;
-    // }
+    if (chip1.read(vPorta) == HIGH)
+    {
+      return LOW;
+    }
+    else
+    {
+      return HIGH;
+    }
   }
   else
   {
-    //if (chip2.read(vPorta - 8) == HIGH)
-    //{
-    //return LOW;
-    //}
-    //else
-    //{
-    //return HIGH;
-    //}
+    if (chip2.read(vPorta - 8) == HIGH)
+    {
+      return LOW;
+    }
+    else
+    {
+      return HIGH;
+    }
   }
 }
 
@@ -192,20 +192,20 @@ int LeSensor(int vPorta)
 
 void ApagaPortas()
 {
-  // chip1.write8(255);
-  //chip2.write8(255);
-  // chip3.write8(240);
+  chip1.write8(255);
+  chip2.write8(255);
+  chip3.write8(240);
 }
 
 void Inverte(int vPorta)
 {
-  //if (vPorta < 8)
-  //{
-  // chip1.write(vPorta, !chip1.read(vPorta));
-  //}
-  //else
-  //{
-  // chip2.write(vPorta - 8, !chip2.read(vPorta - 8));
-  //}
+  if (vPorta < 8)
+  {
+    chip1.write(vPorta, !chip1.read(vPorta));
+  }
+  else
+  {
+    chip2.write(vPorta - 8, !chip2.read(vPorta - 8));
+  }
   SaveOutputs();
 }
